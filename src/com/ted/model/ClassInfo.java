@@ -5,9 +5,29 @@ import java.util.Map;
 
 public class ClassInfo {
 
+	/**
+	 * 接口名称
+	 */
+	private List<String> interfaceName;
+	/**
+	 * 父类名称
+	 */
+	private String superClassName;
+	/**
+	 * 类名称
+	 */
 	private String className;
+	/**
+	 * 导入类名称
+	 */
 	private List<String> importName;
+	/**
+	 * 字段
+	 */
 	private Map<String,String> fields;
+	/**
+	 * 方法
+	 */
 	private String methodName;
 	
 	

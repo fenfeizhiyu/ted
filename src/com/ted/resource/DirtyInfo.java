@@ -1,5 +1,7 @@
 package com.ted.resource;
 
+import com.ted.constant.ResourceConstant;
+
 
 public class DirtyInfo {
 
@@ -21,37 +23,71 @@ public class DirtyInfo {
 	
 	private int[] endWords;
 	
+	/**
+	 * 指定开始字符，开始字符串，结束字符，结束字符串
+	 * @param startFlag
+	 * @param startWords
+	 * @param endFlag
+	 * @param endWords
+	 */
+	public DirtyInfo(int startFlag,int[] startWords,int endFlag,int[] endWords){
+		this.startFlag=startFlag;
+		this.startWords=startWords;
+		this.endFlag=endFlag;
+		this.endWords=endWords;
+	}
 	
-	public boolean isStartFlag(byte b){
+	/***
+	 * 指定开始字符，开始字符串，默认结束字符为回车换行符。
+	 * @param startFlag
+	 * @param startWords
+	 */
+	public DirtyInfo(int startFlag,int[] startWords){
+		this.startFlag=startFlag;
+		this.startWords=startWords;
+		this.endFlag=ResourceConstant.huiche;
+		this.endWords=new int[]{endFlag,ResourceConstant.huanhang};
+	}
+	/**
+	 * 判断是否命中开始字符
+	 * @param b
+	 * @return
+	 */
+	public boolean isStartFlag(char b){
 		return startFlag==(int)b;
 	}
 	
-	public boolean isEndFlag(byte b){
+	/**
+	 * 判断是否命中结束字符
+	 * @param b
+	 * @return
+	 */
+	public boolean isEndFlag(char b){
 		return endFlag==(int)b;
 	}
 	
 	/**
 	 * 判断是否是完整的开始字符
-	 * @param bytes
+	 * @param chars
 	 * @return
 	 */
-	public boolean isStartWords(byte[] bytes){
-		return isEqualWords(this.startWords,bytes);
+	public boolean isStartWords(char[] chars){
+		return isEqualWords(this.startWords,chars);
 	}
 	
 	
 	/**
 	 * 判断是否是完整的结束字符
-	 * @param bytes
+	 * @param chars
 	 * @return
 	 */
-	public boolean isEndWords(byte[] bytes){
-		return isEqualWords(this.endWords,bytes);
+	public boolean isEndWords(char[] chars){
+		return isEqualWords(this.endWords,chars);
 	}
 	
-	private boolean isEqualWords(int[] words,byte[] bytes){
-		for(int i=0;i<bytes.length;i++){
-			if(bytes[i]!=words[i])
+	private boolean isEqualWords(int[] words,char[] chars){
+		for(int i=0;i<chars.length;i++){
+			if(chars[i]!=words[i])
 				return false;
 		}
 		return true;

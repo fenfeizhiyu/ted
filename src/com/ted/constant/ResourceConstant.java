@@ -28,8 +28,10 @@ public class ResourceConstant {
 	public final static int kongge=32;
 	
 	public static void main(String[] args){
-		String s=";\r\n@\\// ";
-		System.out.println(Arrays.toString(s.getBytes()));
+		//String s=";\r\n@\\// ";
+		//System.out.println(Arrays.toString(s.getBytes()));
+		char c=47;
+		System.out.println(c);
 	}
 	
 }

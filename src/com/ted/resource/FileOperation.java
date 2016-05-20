@@ -17,7 +17,7 @@ public class FileOperation {
 	 * @return
 	 * @throws IOException
 	 */
-	public static String readFileAsString(String filePath,String encoding) throws IOException{
+	public static String readFileAsString(String filePath,String encoding){
 		char[] chs=new char[bufferReadSize];
 		FileInputStream fin=null;
 		InputStreamReader isr=null;
@@ -59,10 +59,7 @@ public class FileOperation {
 			fin=new FileInputStream(filePath);
 			int len=fin.read(bytes);
 			while(len!=-1){
-				for(byte b:bytes){
-					System.out.print(b);
-				}
-				System.out.println();
+				System.out.println(Arrays.toString(bytes));
 				len=fin.read(bytes);
 			}
 		}catch(Exception e){

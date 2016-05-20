@@ -19,6 +19,9 @@ public class FileSource {
 	 */
 	private List<String> fileNames=new ArrayList<String>();
 	
+	private List<FileFilter> filters=new ArrayList<FileFilter>();
+	
+	
 	public String getBasePath() {
 	    return basePath;
 	}
@@ -75,8 +78,10 @@ public class FileSource {
 		return;
 	    }
 	    if(file.isFile()){
-		filePaths.add(file.getPath());
-		fileNames.add(file.getName());
+	    	if(acceptAllFilter(file)){
+				filePaths.add(file.getPath());
+				fileNames.add(file.getName());
+	    	}
 	    }else{
 		File[] fs=file.listFiles();
 		for(File f:fs){
@@ -92,6 +97,20 @@ public class FileSource {
 	    searchFiles(srcFileDir);
 	}
 	
-	
+	/**
+	 *插入一个过滤器
+	 * @param fileFilter
+	 */
+   public void registerFilter(FileFilter fileFilter){
+	   this.filters.add(fileFilter);
+   }
    
+   public boolean acceptAllFilter(File file){
+	   for(FileFilter f: filters){
+		   if(!f.accept(file)){
+			   return false;
+		   }
+	   }
+	   return true;
+   }
 }

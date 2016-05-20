@@ -2,9 +2,11 @@ package com.ted.model;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
@@ -21,13 +23,13 @@ import org.eclipse.jdt.core.dom.MethodDeclaration;
 import com.ted.parser.ParserFactory;
 import com.ted.resource.FileOperation;
 import com.ted.resource.FileSource;
-import com.ted.util.PrintUtils;
 
 
 
-public class TA {
 
-	public static void main2(String[] args) throws Exception {
+public class TA  {
+
+	public static void main1(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		String s="D:/log/code/MouldHoudongNotifyController.java";
 		File file=new File(s);
@@ -47,12 +49,27 @@ public class TA {
 		TypeDeclaration td=(TypeDeclaration)types.get(0);
 		MethodDeclaration[] mds=td.getMethods();
 		FieldDeclaration[] fields=td.getFields();
+		//System.out.println(td.getSuperclassType().toString());
+		List list=td.superInterfaceTypes();
+		for(int i=0;i<list.size();i++){
+			 System.out.println(list.get(i).toString());
+		}
+		
+		Map m=td.properties();
+		Iterator iter=m.entrySet().iterator();
+		while(iter.hasNext()){
+			Map.Entry entry=(Map.Entry)iter.next();
+			System.out.println(entry.getKey()+"::"+entry.getValue().toString());
+		}
+		System.out.println();
+		
 		/*for(MethodDeclaration md:mds){
 			if(md.getJavadoc()!=null)
 			System.out.println(md.getJavadoc().toString());
 			System.out.println(md.getName());
 		}*/
 		for(FieldDeclaration fd:fields){
+		
 			System.out.println(fd.toString());
 			//System.out.println(fd.getType());
 		}
@@ -65,7 +82,10 @@ public class TA {
 		FileSource fs=new FileSource("D:/log/code/");
 		//fs.searchAllFiles();
 		//PrintUtils.printList(fs.getFilePaths());
-		FileOperation.readFileAsInputStream("D:/log/code/MouldHoudongCreateController.java");
+		//FileOperation.readFileAsInputStream("D:/log/code/MouldHoudongCreateController.java");
+		String s=FileOperation.readFileAsString("D:/log/code/MouldHoudongNotifyController.java","UTF-8");
+		char[] c=s.toCharArray();
+		System.out.println(Arrays.toString(c));
 	}
 	
 
