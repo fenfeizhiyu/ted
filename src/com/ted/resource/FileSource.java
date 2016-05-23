@@ -105,7 +105,7 @@ public class FileSource {
 	   this.filters.add(fileFilter);
    }
    
-   public boolean acceptAllFilter(File file){
+   private boolean acceptAllFilter(File file){
 	   for(FileFilter f: filters){
 		   if(!f.accept(file)){
 			   return false;

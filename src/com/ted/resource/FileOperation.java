@@ -9,7 +9,9 @@ import java.util.Arrays;
 
 public class FileOperation {
 
-	private final static int bufferReadSize=1024;
+	private final static int bufferReadSize=64;
+	
+	
 	/**
 	 * 读取指定的文件内容
 	 * @param filePath
@@ -28,6 +30,7 @@ public class FileOperation {
 			int len=isr.read(chs);
 			while(len!=-1){
 				sb.append(chs);
+				chs=new char[bufferReadSize];
 				len=isr.read(chs);
 			}
 			return sb.toString();
@@ -60,7 +63,9 @@ public class FileOperation {
 			int len=fin.read(bytes);
 			while(len!=-1){
 				System.out.println(Arrays.toString(bytes));
+				bytes=new byte[1024];
 				len=fin.read(bytes);
+				
 			}
 		}catch(Exception e){
 			e.printStackTrace();

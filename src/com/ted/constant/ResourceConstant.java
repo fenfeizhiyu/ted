@@ -11,7 +11,7 @@ public class ResourceConstant {
 	public final static int huiche=13;
 	public final static int huanhang=10;
 	/**
-	 * @
+	 * @·û
 	 */
 	public final static int a=64;
 	

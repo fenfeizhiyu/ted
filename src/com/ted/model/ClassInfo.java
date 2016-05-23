@@ -6,6 +6,10 @@ import java.util.Map;
 public class ClassInfo {
 
 	/**
+	 * 文件路径名
+	 */
+	private String pathName;
+	/**
 	 * 接口名称
 	 */
 	private List<String> interfaceName;
@@ -24,11 +28,11 @@ public class ClassInfo {
 	/**
 	 * 字段
 	 */
-	private Map<String,String> fields;
+	private List<String> fields;
 	/**
-	 * 方法
+	 *  返回类型_方法名
 	 */
-	private String methodName;
+	private List<String> method;
 	
 	
 	
@@ -44,19 +48,61 @@ public class ClassInfo {
 	public void setImportName(List<String> importName) {
 		this.importName = importName;
 	}
-	public Map<String, String> getFields() {
+	public List<String> getFields() {
 		return fields;
 	}
-	public void setFields(Map<String, String> fields) {
+	public void setFields(List<String> fields) {
 		this.fields = fields;
 	}
-	public String getMethodName() {
-		return methodName;
+	public List<String> getInterfaceName() {
+		return interfaceName;
 	}
-	public void setMethodName(String methodName) {
-		this.methodName = methodName;
+	public void setInterfaceName(List<String> interfaceName) {
+		this.interfaceName = interfaceName;
+	}
+	public String getSuperClassName() {
+		return superClassName;
+	}
+	public void setSuperClassName(String superClassName) {
+		this.superClassName = superClassName;
+	}
+	public List<String> getMethod() {
+		return method;
+	}
+	public void setMethod(List<String> method) {
+		this.method = method;
+	}
+	@Override
+	public String toString() {
+		StringBuilder sb=new StringBuilder();
+		sb.append("pathName"+pathName+"\r\n");
+		sb.append("className :"+className+"\r\n");
+		sb.append(printList(importName,"imports"));
+		sb.append("superclassName :"+superClassName+"\r\n");
+		sb.append(printList(interfaceName,"interfaces"));
+		sb.append(printList(fields,"fields"));
+		sb.append(printList(method,"method"));
+		return sb.toString();
 	}
 	
 	
-	
+	private String printList(List<String> list,String title){
+		StringBuilder sb=new StringBuilder(title+": \r\n");
+		if(list==null){
+			return title+": null\r\n";
+		}
+		sb.append("*******************\r\n");
+		for(String s:list){
+			sb.append(s+"\r\n");
+		}
+		sb.append("*******************\r\n");
+		return sb.toString();
+		
+	}
+	public String getPathName() {
+		return pathName;
+	}
+	public void setPathName(String pathName) {
+		this.pathName = pathName;
+	}	
 }

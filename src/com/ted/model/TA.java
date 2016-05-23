@@ -29,7 +29,7 @@ import com.ted.resource.FileSource;
 
 public class TA  {
 
-	public static void main1(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		String s="D:/log/code/MouldHoudongNotifyController.java";
 		File file=new File(s);
@@ -46,6 +46,10 @@ public class TA  {
 		ASTParser ap=pf.getAstParser(sb.toString());
 		CompilationUnit result=(CompilationUnit) ap.createAST(null);
 		List types=result.types();
+		List imList=result.imports();
+		for(int i=0;i<imList.size();i++){
+			System.out.print(imList.get(i).toString());
+		}
 		TypeDeclaration td=(TypeDeclaration)types.get(0);
 		MethodDeclaration[] mds=td.getMethods();
 		FieldDeclaration[] fields=td.getFields();
@@ -54,7 +58,9 @@ public class TA  {
 		for(int i=0;i<list.size();i++){
 			 System.out.println(list.get(i).toString());
 		}
-		
+		for(MethodDeclaration md:mds){
+			System.out.println(md.getReturnType2().toString()+" "+md.getName().toString());
+		}
 		Map m=td.properties();
 		Iterator iter=m.entrySet().iterator();
 		while(iter.hasNext()){
@@ -77,15 +83,15 @@ public class TA  {
 		
 	}
 	
-	public static void main(String[] args) throws Exception {
+	public static void main1(String[] args) throws Exception {
 		
 		FileSource fs=new FileSource("D:/log/code/");
 		//fs.searchAllFiles();
 		//PrintUtils.printList(fs.getFilePaths());
-		//FileOperation.readFileAsInputStream("D:/log/code/MouldHoudongCreateController.java");
-		String s=FileOperation.readFileAsString("D:/log/code/MouldHoudongNotifyController.java","UTF-8");
-		char[] c=s.toCharArray();
-		System.out.println(Arrays.toString(c));
+		FileOperation.readFileAsInputStream("D:/log/code/MouldHoudongCreateController.java");
+		//String s=FileOperation.readFileAsString("D:/log/code/MouldHoudongNotifyController.java","UTF-8");
+		//char[] c=s.toCharArray();
+		//System.out.println(s);
 	}
 	
 

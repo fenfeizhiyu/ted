@@ -20,14 +20,20 @@ public class CleanClassSourceByChar {
 	private List<DirtyInfo> dirtyInfos=new ArrayList<DirtyInfo>();
 	
 	
+	public static CleanClassSourceByChar getCleanClassSourceByChar(String str){
+		return new CleanClassSourceByChar(str);
+	}
 	
+	public static CleanClassSourceByChar getCleanClassSourceByChar(char[] chars){
+		return new CleanClassSourceByChar(chars);
+	}
 	
-	public CleanClassSourceByChar(String str){
+	private CleanClassSourceByChar(String str){
 		this.sourceStr=str;
 		this.sourceStrChars=str.toCharArray();
 	}
 	
-	public CleanClassSourceByChar(char[] chars){
+	private CleanClassSourceByChar(char[] chars){
 		this.sourceStrChars=chars;
 	}
 	
@@ -111,7 +117,7 @@ public class CleanClassSourceByChar {
 	}
 	
 	/**
-	 * 搜索结束符
+	 * 搜索第一个出现的结束符
 	 * @param di
 	 * @param index
 	 */
@@ -123,6 +129,7 @@ public class CleanClassSourceByChar {
 				char[] endChars=getcharsByNum(i,di.getEndWords().length);
 				if(di.isEndWords(endChars)){
 					di.setEndIndex(i-1);
+					return;
 				}
 			}
 		}
@@ -137,6 +144,7 @@ public class CleanClassSourceByChar {
 			this.sourceStrChars[i]=ResourceConstant.kongge;
 		}
 	}
+	
 	
 	
 	
