@@ -31,6 +31,7 @@ public class ParserClass {
 	 */
 	public ClassInfo getClassInfoByType(TypeDeclaration td){
 		ClassInfo ci=new ClassInfo();
+		ci.setPathName(compilationUnit.getPackage().getName().toString());
 		ci.setFields(this.parserFieldNamesAndType(td));
 		ci.setClassName(td.getName().getFullyQualifiedName());
 	    ci.setImportName(this.parserImports());
@@ -68,14 +69,14 @@ public class ParserClass {
 		return returnList;
 	}
 	/**
-	 * 获取一个类型中的变量定义
+	 * 获取一个类型中的变量定义  类型_名称
 	 * @return
 	*/
 	public List<String> parserFieldNamesAndType(TypeDeclaration td){
 		FieldDeclaration[] fields=td.getFields();
 		List<String> returnList=new ArrayList<String>();
 		for(FieldDeclaration fd:fields){
-			returnList.add(fd.toString());
+			returnList.add(fd.getType().toString()+"_"+StringUtils.getFieldName(fd.fragments().get(0).toString()));
 		}
 		return returnList;
 	} 
@@ -89,7 +90,10 @@ public class ParserClass {
 		MethodDeclaration[] mds=td.getMethods();
 		List<String> returnList=new ArrayList<String>();
 		for(MethodDeclaration md:mds){
-			returnList.add(md.getReturnType2().toString()+"_"+md.getName().toString());
+			if(md.getReturnType2()!=null)
+			  returnList.add(md.getReturnType2().toString()+"_"+md.getName().toString());
+			else
+				returnList.add("_"+md.getName().toString());
 		}
 		return returnList;
 	}

@@ -1,10 +1,21 @@
 package com.ted.model;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-public class ClassInfo {
+import com.ted.constant.ResourceConstant;
 
+public class ClassInfo implements Serializable{
+
+	private static final long serialVersionUID = -8059949133788326259L;
+	
+	private int id;
+	
+	public ClassInfo(){
+		id=ResourceConstant.classInfoStartId;
+		ResourceConstant.classInfoStartId++;
+	}
 	/**
 	 * 文件路径名
 	 */
@@ -75,10 +86,10 @@ public class ClassInfo {
 	@Override
 	public String toString() {
 		StringBuilder sb=new StringBuilder();
-		sb.append("pathName"+pathName+"\r\n");
+		sb.append("packageName : "+pathName+"\r\n");
 		sb.append("className :"+className+"\r\n");
 		sb.append(printList(importName,"imports"));
-		sb.append("superclassName :"+superClassName+"\r\n");
+		sb.append("superclassName : "+superClassName+"\r\n");
 		sb.append(printList(interfaceName,"interfaces"));
 		sb.append(printList(fields,"fields"));
 		sb.append(printList(method,"method"));
@@ -104,5 +115,13 @@ public class ClassInfo {
 	}
 	public void setPathName(String pathName) {
 		this.pathName = pathName;
-	}	
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	
 }

@@ -22,7 +22,7 @@ public class StringUtils {
 	}
 	
 	public static void main(String[] args){
-		System.out.println(delStringByString("import javax.servlet.http.HttpServletRequest","import "));
+		System.out.println(getFieldName("CLASS_TYPE_PARAMETER_BOUND=0x11"));
 	}
 	
 	/**
@@ -38,4 +38,12 @@ public class StringUtils {
 		}
 		return sb.toString();
 	}	
+	
+	public static String getFieldName(String str){
+		if(str.contains("=")){
+			str=str.replaceAll("\\s*=[\\s\\w]*","");
+			return str;
+		}
+		return str;
+	}
 }

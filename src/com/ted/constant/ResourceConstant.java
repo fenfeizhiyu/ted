@@ -1,9 +1,14 @@
 package com.ted.constant;
 
-import java.util.Arrays;
 
 public class ResourceConstant {
 
+	
+	public static int classInfoStartId=1;
+	
+	
+	
+	
 	/**
 	 *;
 	 */
