@@ -7,8 +7,11 @@ import org.eclipse.jdt.core.dom.ASTParser;
 import org.eclipse.jdt.core.dom.CompilationUnit;
 import org.eclipse.jdt.core.dom.TypeDeclaration;
 
+import com.ted.cache.CacheRuner;
+import com.ted.cache.ClassInfoCache;
 import com.ted.constant.ResourceConstant;
 import com.ted.model.ClassInfo;
+import com.ted.parser.ClassInfoVisitor;
 import com.ted.parser.ParserClass;
 import com.ted.parser.ParserFactory;
 import com.ted.resource.CleanClassSourceByChar;
@@ -17,17 +20,18 @@ import com.ted.resource.FileOperation;
 import com.ted.resource.FileSource;
 import com.ted.resource.JavaFileFilter;
 
-public class RunMain {
+public class SearchRunMain {
 	
 	
 	private static final String path="D:/log/code/";
-	private static final String path2="C:\\Users\\yu.yang\\Downloads\\spring-framework-4.2.5.RELEASE\\spring-framework-4.2.5.RELEASE\\spring-core\\src\\main\\java\\org\\springframework\\asm";
+	private static  String path2="C:\\Users\\yu.yang\\Downloads\\spring-framework-4.2.5.RELEASE\\spring-framework-4.2.5.RELEASE";
 	private static final String repath="";
 	private static  int totalNum;
 	private static  int currNums;
-	
+	private static String pro="spring-websocket";
 	
 	public static void main(String[] args) throws Exception {
+		path2=path2+"\\"+pro;
 		long start=System.currentTimeMillis();
 		List<ClassInfo> classInfos=new ArrayList<ClassInfo>();
 		/**
@@ -53,11 +57,19 @@ public class RunMain {
 			}
 			System.out.println("总共"+totalNum+";已完成"+j);
 		}
-		System.out.println(System.currentTimeMillis()-start);
+		System.out.println("总耗时"+(System.currentTimeMillis()-start)+"毫秒");
+		CacheRuner cr=new CacheRuner("D:\\log\\classCache");
+		ClassInfoCache cic=new ClassInfoCache();
+		cic.setCis(classInfos);
+		cic.setSaveDate("2016-5-27");
+		cic.setPojectName(pro);
+		cic.setSaveName(pro+".txt");
+		cr.saveToDisk(cic);
+		/*
 		for(ClassInfo c:classInfos){
 			System.out.println(c);
 			System.out.println("-------------------------");
-		}
+		}*/
 		
 	}
 	
@@ -78,7 +90,10 @@ public class RunMain {
 		 */
 	    ASTParser ap= ParserFactory.getAstParser(str);
 	    CompilationUnit result =(CompilationUnit)ap.createAST(null);
-		ParserClass pc=ParserClass.getParserClass(result);
+	    ClassInfo ci=new ClassInfo();
+	    ClassInfoVisitor mv=new ClassInfoVisitor(ci);
+	    result.accept(mv);
+		ParserClass pc=ParserClass.getParserClass(result,ci);
 		return pc;
 	}
 	

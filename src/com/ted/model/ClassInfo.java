@@ -1,6 +1,7 @@
 package com.ted.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,8 @@ public class ClassInfo implements Serializable{
 	private static final long serialVersionUID = -8059949133788326259L;
 	
 	private int id;
+	
+	
 	
 	public ClassInfo(){
 		id=ResourceConstant.classInfoStartId;
@@ -44,6 +47,8 @@ public class ClassInfo implements Serializable{
 	 *  返回类型_方法名
 	 */
 	private List<String> method;
+	
+	private List<String> methodCalls=new ArrayList<String>();
 	
 	
 	
@@ -122,6 +127,16 @@ public class ClassInfo implements Serializable{
 	public void setId(int id) {
 		this.id = id;
 	}
+	public List<String> getMethodCalls() {
+		return methodCalls;
+	}
+	public void setMethodCalls(List<String> methodCalls) {
+		this.methodCalls = methodCalls;
+	}
 	
+	
+	public void addMethodCall(String methodCall){
+		this.methodCalls.add(methodCall);
+	}
 	
 }

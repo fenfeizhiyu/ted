@@ -1,6 +1,8 @@
 package com.ted.util;
 
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringUtils {
 
@@ -45,5 +47,13 @@ public class StringUtils {
 			return str;
 		}
 		return str;
+	}
+	
+	public static void getMethodName(String str){
+		 Pattern pattern = Pattern.compile("\\.[\\s]*[\\w]+[\\s]*\\(");
+		 Matcher matcher = pattern.matcher(str);
+		 if(matcher.find()){
+			System.out.println("调用方法数:"+matcher.groupCount()); 
+		 }
 	}
 }

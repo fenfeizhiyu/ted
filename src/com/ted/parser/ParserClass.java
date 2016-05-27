@@ -14,14 +14,15 @@ import com.ted.util.StringUtils;
 public class ParserClass {
 
 	private CompilationUnit compilationUnit;
+	private ClassInfo ci;
 	
-	
-	private ParserClass(CompilationUnit c){
+	private ParserClass(CompilationUnit c,ClassInfo ci){
 		compilationUnit=c;
+		this.ci=ci;
 	}
 	
-	public static ParserClass getParserClass(CompilationUnit compilationUnit){
-		return new ParserClass(compilationUnit);
+	public static ParserClass getParserClass(CompilationUnit compilationUnit,ClassInfo ci){
+		return new ParserClass(compilationUnit, ci);
 	}
 	
 	
@@ -30,7 +31,6 @@ public class ParserClass {
 	 * @return
 	 */
 	public ClassInfo getClassInfoByType(TypeDeclaration td){
-		ClassInfo ci=new ClassInfo();
 		ci.setPathName(compilationUnit.getPackage().getName().toString());
 		ci.setFields(this.parserFieldNamesAndType(td));
 		ci.setClassName(td.getName().getFullyQualifiedName());
@@ -90,6 +90,9 @@ public class ParserClass {
 		MethodDeclaration[] mds=td.getMethods();
 		List<String> returnList=new ArrayList<String>();
 		for(MethodDeclaration md:mds){
+			//System.out.println(md.toString());
+			//StringUtils.getMethodName(md.toString());
+		
 			if(md.getReturnType2()!=null)
 			  returnList.add(md.getReturnType2().toString()+"_"+md.getName().toString());
 			else
@@ -97,6 +100,8 @@ public class ParserClass {
 		}
 		return returnList;
 	}
+	
+	
 	
 	/**
 	 * 获取实现的接口

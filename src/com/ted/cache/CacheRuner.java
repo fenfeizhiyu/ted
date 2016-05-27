@@ -11,6 +11,11 @@ public class CacheRuner {
  
 	private static String savaPath=""; 
 	
+	
+	
+	public CacheRuner(String savePath){
+		this.savaPath=savePath;
+	}
 	/**
 	 * 将对象序列化保存
 	 * @param cache
@@ -43,6 +48,7 @@ public class CacheRuner {
 	 * @param fileName
 	 * @return
 	 */
+	@SuppressWarnings("resource")
 	public CacheInterface loadCacheFromDisk(String fileName){
 		fileName=getRealFilePath(fileName);
 		ObjectInputStream in=null;
@@ -80,6 +86,10 @@ public class CacheRuner {
 		File file=new File(fileName);
 		if(!file.exists())
 			file.createNewFile();
+		else{
+			file.delete();
+			file.createNewFile();
+		}
 		return file;
 	}
 	
