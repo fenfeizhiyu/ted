@@ -22,6 +22,11 @@ public class FileSource {
 	private List<FileFilter> filters=new ArrayList<FileFilter>();
 	
 	
+	public void clearFilesList(){
+		filePaths=new ArrayList<String>();
+		fileNames=new ArrayList<String>();
+	}
+	
 	public String getBasePath() {
 	    return basePath;
 	}
