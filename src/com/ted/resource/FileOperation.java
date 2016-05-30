@@ -1,7 +1,11 @@
 package com.ted.resource;
 
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -77,6 +81,39 @@ public class FileOperation {
 			}
 		}
 		return null;
+	}
+	
+	
+	public static  void writeStringToFile(String str,File file){
+		BufferedWriter bw=null;
+		try {
+			bw=new BufferedWriter(new FileWriter(file));
+			bw.write(str);
+			bw.flush();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try{
+				bw.close();
+			}catch(Exception ex){
+				ex.printStackTrace();
+			}
+		}
+	}
+	
+	public  static File createFile(String path,String name){
+		File file=new File(path+name);
+		try{
+			if(file.exists()){
+				file.delete();
+				file.createNewFile();
+			}else{
+				file.createNewFile();
+			}
+			return file;
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	

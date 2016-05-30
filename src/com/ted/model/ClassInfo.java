@@ -7,6 +7,11 @@ import java.util.Map;
 
 import com.ted.constant.ResourceConstant;
 
+/**
+ * 类的基本信息
+ * @author yu.yang
+ *
+ */
 public class ClassInfo implements Serializable{
 
 	private static final long serialVersionUID = -8059949133788326259L;
@@ -48,8 +53,12 @@ public class ClassInfo implements Serializable{
 	 */
 	private List<String> method;
 	
+	/**
+	 *
+	 */
 	private List<String> methodCalls=new ArrayList<String>();
 	
+	private int quoteNum;
 	
 	
 	public String getClassName() {
@@ -91,6 +100,7 @@ public class ClassInfo implements Serializable{
 	@Override
 	public String toString() {
 		StringBuilder sb=new StringBuilder();
+		sb.append("class Info id :"+this.id+"\r\n");
 		sb.append("packageName : "+pathName+"\r\n");
 		sb.append("className :"+className+"\r\n");
 		sb.append(printList(importName,"imports"));
@@ -98,6 +108,7 @@ public class ClassInfo implements Serializable{
 		sb.append(printList(interfaceName,"interfaces"));
 		sb.append(printList(fields,"fields"));
 		sb.append(printList(method,"method"));
+		sb.append("methodsCallNum is :"+this.methodCalls.size()+"\r\n");
 		return sb.toString();
 	}
 	
@@ -138,5 +149,13 @@ public class ClassInfo implements Serializable{
 	public void addMethodCall(String methodCall){
 		this.methodCalls.add(methodCall);
 	}
+	public int getQuoteNum() {
+		return quoteNum;
+	}
+	public void setQuoteNum(int quoteNum) {
+		this.quoteNum = quoteNum;
+	}
+	
+	
 	
 }
