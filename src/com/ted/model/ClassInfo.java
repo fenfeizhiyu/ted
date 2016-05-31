@@ -58,7 +58,7 @@ public class ClassInfo implements Serializable{
 	 */
 	private List<String> methodCalls=new ArrayList<String>();
 	
-	private int quoteNum;
+
 	
 	
 	public String getClassName() {
@@ -149,13 +149,10 @@ public class ClassInfo implements Serializable{
 	public void addMethodCall(String methodCall){
 		this.methodCalls.add(methodCall);
 	}
-	public int getQuoteNum() {
-		return quoteNum;
-	}
-	public void setQuoteNum(int quoteNum) {
-		this.quoteNum = quoteNum;
-	}
 	
+	public String getFullName(){
+		return this.pathName+"."+this.className;
+	}
 	
 	
 }

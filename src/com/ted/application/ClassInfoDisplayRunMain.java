@@ -6,6 +6,7 @@ import com.ted.cache.CacheInterface;
 import com.ted.cache.CacheRuner;
 import com.ted.cache.ClassInfoCache;
 import com.ted.model.ClassInfo;
+import com.ted.model.DataCollector;
 import com.ted.resource.FileOperation;
 
 public class ClassInfoDisplayRunMain {
@@ -23,10 +24,16 @@ public class ClassInfoDisplayRunMain {
 		ClassInfoCache classInfocache=(ClassInfoCache)cif;
 		List<ClassInfo> cisList=classInfocache.getCis();
 		StringBuilder sb=new StringBuilder();
+		DataCollector dc=new DataCollector();
+		
 		for(int i=0;i<cisList.size();i++){
 			sb.append("number"+(i+1)+":"+cisList.get(i)+"\r\n");
-			
+			dc.addClassInfo(cisList.get(i).getFullName());
 		}
+		CacheRuner cache=new CacheRuner("D:\\log\\DataCollector.txt");
+		ClassInfoCache cic=new ClassInfoCache();
+		
+		
 		FileOperation.writeStringToFile(sb.toString(),FileOperation.createFile("D:\\log\\", "testPrint.txt"));
 		
 	}
