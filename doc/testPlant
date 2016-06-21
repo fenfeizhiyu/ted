@@ -1,0 +1,26 @@
+@startuml
+title UML关系图
+Class01 <|-- Class2 : 1被泛化
+Class03 "n"--*"1" Class4 : 4组合3 
+Class05 o-- Class6 :5聚合6 >
+Class07 ..> Class08 : < 7依赖8
+Class9 -->Class10 :9关联10
+Class11 <|..Class12 :12实现 11
+
+
+
+
+class Class2{
+	-String data
+	#void method()
+	-String privateData
+	#int protectedData
+	~int packageData
+	+int publicData
+	{static} int staticId
+	{abstract} void abstractMethod
+}
+
+
+
+@enduml

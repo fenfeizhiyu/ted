@@ -2,10 +2,13 @@ package com.ted.application;
 
 import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import com.ted.util.GenerateShortUUID;
 
 public class UtilMain {
 
-	public static void main(String[] args) {
+	public static void main2(String[] args) {
 		File file=new File("C:\\Users\\yu.yang\\Downloads\\spring-framework-4.2.5.RELEASE\\spring-framework-4.2.5.RELEASE");
 		File[] files=file.listFiles();
 		String[] strs=new String[]{"",""};
@@ -24,5 +27,19 @@ public class UtilMain {
 		System.out.println(sbpro.toString());
 
 	}
+	
+	public static void main(String[] args)
+	{
 
+		
+	    for(int i=0;i<1;i++){
+	    	//System.out.println(GenerateShortUUID.next());
+	    	System.out.println(UUID.randomUUID().toString());
+	    	//System.out.println(UUID.randomUUID().hashCode());
+	    }
+	    
+	}
 }
+
+
+

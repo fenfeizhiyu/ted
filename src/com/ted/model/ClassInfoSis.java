@@ -1,11 +1,15 @@
 package com.ted.model;
 
+import java.io.Serializable;
+
 
 /*
  * 类的统计信息
  */
-public class ClassInfoSis {
+public class ClassInfoSis implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 信息Id
 	 */

@@ -1,6 +1,5 @@
 package com.ted.cache;
 
-import java.io.Serializable;
 import java.util.List;
 
 import com.ted.model.ClassInfo;
