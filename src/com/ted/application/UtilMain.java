@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.List;
 import java.util.UUID;
 
-import com.ted.util.GenerateShortUUID;
+
 
 public class UtilMain {
 
@@ -31,13 +31,8 @@ public class UtilMain {
 	public static void main(String[] args)
 	{
 
-		
-	    for(int i=0;i<1;i++){
-	    	//System.out.println(GenerateShortUUID.next());
-	    	System.out.println(UUID.randomUUID().toString());
-	    	//System.out.println(UUID.randomUUID().hashCode());
-	    }
-	    
+		String c="/u4e00";
+		System.out.println(String.valueOf("/u4e00"));
 	}
 }
 
